@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DistILL", "DistILL\DistILL.csproj", "{1D7AFD54-5DBB-4DA5-AAB3-14C3E9486E52}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "src\Client\Client.csproj", "{DC99497D-B296-4FD4-BC7B-672161301F46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Router", "Router\Router.csproj", "{E3E18A3E-7AA2-4544-AB55-DC5087953196}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -8,9 +10,13 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1D7AFD54-5DBB-4DA5-AAB3-14C3E9486E52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1D7AFD54-5DBB-4DA5-AAB3-14C3E9486E52}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1D7AFD54-5DBB-4DA5-AAB3-14C3E9486E52}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1D7AFD54-5DBB-4DA5-AAB3-14C3E9486E52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC99497D-B296-4FD4-BC7B-672161301F46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC99497D-B296-4FD4-BC7B-672161301F46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC99497D-B296-4FD4-BC7B-672161301F46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC99497D-B296-4FD4-BC7B-672161301F46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3E18A3E-7AA2-4544-AB55-DC5087953196}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3E18A3E-7AA2-4544-AB55-DC5087953196}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3E18A3E-7AA2-4544-AB55-DC5087953196}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3E18A3E-7AA2-4544-AB55-DC5087953196}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
