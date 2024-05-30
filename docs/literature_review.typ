@@ -263,6 +263,14 @@ associated with processing [[big data]] by providing a scalable, fault-tolerant,
 analyzing both historical and real-time data. As it is usual with real time data streaming, input data comes in the form
 of [[Apache Kafka]] (generally), due to its fast times and low latency
 
+#figure(
+    image("../images/lambda.svg"),
+    caption: [
+        Lambda Architecture
+    ],
+    label: <lambda-architecture>
+)
+
 At its core, Lambda Architecture consists of three primary layers:
 
 1. *Batch Layer*: This layer processes large volumes of historical data in batches. It stores the data in an
