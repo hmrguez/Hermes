@@ -264,11 +264,10 @@ analyzing both historical and real-time data. As it is usual with real time data
 of [[Apache Kafka]] (generally), due to its fast times and low latency
 
 #figure(
-    image("../images/lambda.svg"),
+    image("images/lambda.svg"),
     caption: [
         Lambda Architecture
-    ],
-    label: <lambda-architecture>
+    ]
 )
 
 At its core, Lambda Architecture consists of three primary layers:
@@ -309,6 +308,14 @@ pipeline by focusing exclusively on processing data in real-time, eliminating th
 processing paths found in [[Lambda Architecture]]. This architecture is centered around the concept of an immutable data
 log, where all data—historical and real-time—is ingested and stored in a centralized log, serving as the single source
 of truth for continuous processing and analysis of data streams .
+
+#figure(
+    image("images/kappa.png"),
+    caption: [
+        Kappa Architecture
+    ]
+)
+
 
 ==== Core Components of Kappa Architecture
 
@@ -373,5 +380,12 @@ The StreamCube architecture is designed to facilitate online, multi-dimensional,
 Additionally to the architectures before mentioned there is an architectural pattern rising which is to view each process in an ETL pipeline as a microservice. A microservice architecture is a design pattern where a big application or system is composed into several different chunks, each responsible for 1 and only 1 task. This leverages the single responsibility in the SOLID principles perfectly and makes the codebase easier to develop and maintain for a large team.
 
 In [insert microservices article for IoT] the team covers how they implemented said design for a use case of smart ports and air quality monitoring and showed impressive results.
+
+#figure(
+    image("images/microservices.png"),
+    caption: [
+        Microservices Architecture
+    ]
+)
 
 Essentially what they achieved was to split the ETL process into several services: ingestionService, filteringService, processingService and presentingService, each handling its respective
