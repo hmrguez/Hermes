@@ -4,13 +4,13 @@
 
 == Introduction
 
-The advent of big data has necessitated the development of architectures capable of efficiently ingesting, processing and analyzing large volumes of data in real time. In this literature review explores two prominent data processing architectures: Lambda and Kappa architectures. We will also cover the evolutions of these architectures and the challenges they face and how some new arising technologies have made their place in specific components of those architectures. Then we will delve into how event driven architectures are changing the way we think about data processing and make an emphasis on existing Complex Event Processing (CEP) frameworks, what they are and how do they orchestrate events in a data processing pipeline. Lastly we will cover the arising of a promising new technology called the StreamCube which leverages both batch and stream processing to provide a new way of querying data.
+The advent of big data has necessitated the development of architectures capable of efficiently ingesting, processing and analyzing large volumes of data in real time. This literature review explores two prominent data processing architectures: Lambda and Kappa architectures. We will also cover the evolutions of these architectures and the challenges they face and how some new arising technologies have made their place in specific components of those architectures. Then we will delve into how event driven architectures are changing the way we think about data processing and make an emphasis on existing Complex Event Processing (CEP) frameworks, what they are and how do they orchestrate events in a data processing pipeline. Lastly we will cover the arising of a promising new technology called the StreamCube which leverages both batch and stream processing to provide a new way of querying data.
 
 == General overview
 
 === What is big data?
 
-Big data is what we call a vast amount of data that can be ingested, processed and stored using conventional techniques. These can come in different forms like social media, sensor information, smart cities, mobile devices telemetry, etc. Characteristics of big data are often described by the three Vs: Volume, Velocity and Variety. Volume refers to the amount of data that is being generated, Velocity refers to the speed at which data is being generated and Variety refers to the different types of data that is being generated. Other Vs have been added to the definition of big data like Veracity and Value. Veracity refers to the quality of the data and Value refers to the insights that can be extracted from the data.
+Big data is what we call a vast amount of data that can't be ingested, processed and stored using conventional techniques. These can come in different forms like social media, sensor information, smart cities, mobile devices telemetry, etc. Characteristics of big data are often described by the three Vs: Volume, Velocity and Variety. Volume refers to the amount of data that is being generated, Velocity refers to the speed at which data is being generated and processed, and Variety refers to the different types of data that is being generated. Other Vs have been added to the definition of big data like Veracity and Value. Veracity refers to the quality of the data and Value refers to the insights that can be extracted from the data.
 
 === ETL
 
@@ -33,11 +33,17 @@ The initial step in the ETL process involves extracting data from multiple sourc
       making it easier to perform complex analyses and generate insightful reports. Loading the data into the warehouse
       involves creating the necessary schemas and tables and inserting the data into these structures
 
+=== ELT
+
+ELT, standing for Extract, Load and Transform is the counterpart of an ETL pipeline, where data comes in an unstructured format and therefore can't be transformed straight out of the box, so it goes straight to loading into a data lake, for its future transformation. What each step does doesn't differ from an ETL process (generally) @big-archive.
 
 
-=== Two different ways of processing data
 
-Nowadays there are mainly two ways to process data: batch processing and stream processing. Batch processing is the traditional way of processing data where data is collected over a period of time and then processed in one go in batches which is particularly efficient due to some technologies we will see down further. Stream processing is the new way of processing data where data is processed as it arrives. Depending on the use case, data can become obsolete at different periods of time. It is a general rule of thumb that data that can become obsolete in a short period of time should be processed in real time, while data that can become obsolete in a longer period of time can be processed in batch. Examples of batch processing scenarios can be when extracting data to train a machine learning model, as long as the data is accurate and isn't subject to data drift it will do. Examples of stream data can be vital signs of a hospitalized patient, which needs to be analyzed with the least latency possible as a minimum sidestep can cost the nurses and doctors not responding on time.
+=== Three different ways of processing data
+
+Nowadays there are mainly three ways to process data: batch processing, real time processing and stream processing. Batch processing is the traditional way of processing data where data is collected over a period of time and then processed in one go in batches which is particularly efficient due to some technologies we will see down further. Real time data processing involves analyzing and acting on data as soon as it is available. Stream processing deals with continuous streams of data as they flow through a system, involving sorting, filtering and aggregating data. Real time and stream processing a lot often come side by side when real time analysis is required, which is why it's not uncommon to see them referred in the literature as a single paradigm which is why I will use their names interchangeably.
+
+  Depending on the use case, data can become obsolete at different periods of time. It is a general rule of thumb that data that can become obsolete in a short period of time should be processed in real time, while data that can become obsolete in a longer period of time can be processed in batches. Examples of batch processing scenarios can be when extracting data to train a machine learning model, as long as the data is accurate and isn't subject to data drift it will do the job. Examples of stream data can be vital signs of a hospitalized patient, which needs to be analyzed with the least latency possible as a minimum sidestep can make the nurses and doctors not responding on time.
 
 
 === Lambda Architecture
@@ -96,7 +102,7 @@ MapReduce is a software framework for writing applications that process large am
 MapReduce is particularly useful when doing batch processing work but not when dealing with streaming data as we will see later
 
 ==== Apache Kafka
- Apache Kafka is a distributed data streaming platform designed for real-time data processing. It is optimized for ingesting and processing streaming data, making it suitable for building real-time streaming data pipelines and applications. Kafka's architecture allows it to handle the constant influx of data from thousands of data sources, processing this data sequentially and incrementally. It combines messaging, storage, and stream processing functionalities to enable the storage and analysis of both historical and real-time data @kafka
+ Apache Kafka is a distributed data streaming platform designed for stream data processing. It is optimized for ingesting and processing streaming data, making it suitable for building real-time streaming data pipelines and applications. Kafka's architecture allows it to handle the constant influx of data from thousands of data sources, processing this data sequentially and incrementally. It combines messaging, storage, and stream processing functionalities to enable the storage and analysis of both historical and real-time data @kafka
 
  Kafka operates on a publish-subscribe model, where data is published to topics and consumed by subscribers. This model facilitates the efficient distribution of data across multiple consumers, ensuring low-latency and high-throughput data processing. Kafka's ability to process data streams in real-time supports continuous data ingestion and real-time analytics, empowering businesses to make timely and data-driven decisions
 
@@ -120,9 +126,9 @@ Apache Storm is a distributed real-time computation system designed to process u
 
 Apache Storm is designed for real-time data processing. Its architecture revolves around spouts and bolts, which are the primary components of a Storm topology.
 
-- *Spouts*: These are the sources of data streams in Storm. They ingest data from various sources such as message queues, log files, databases, APIs, or other data producers. Spouts emit data in the form of tuples into the Storm topology for processing 4.
+- *Spouts*: These are the sources of data streams in Storm. They ingest data from various sources such as message queues, log files, databases, APIs, or other data producers. Spouts emit data in the form of tuples into the Storm topology for processing.
 
-- *Bolts*: Bolts are processing units within a Storm topology. They receive input tuples, perform computations or transformations, and emit output tuples. Bolts can be chained together to create complex processing pipelines 4.
+- *Bolts*: Bolts are processing units within a Storm topology. They receive input tuples, perform computations or transformations, and emit output tuples. Bolts can be chained together to create complex processing pipelines.
 
 These components work together to enable real-time data processing in Storm. The output of a spout is connected to the input of bolts, and the output of a bolt is connected to the input of other bolts, forming a directed acyclic graph (DAG) that defines the flow of data through the topology
 
@@ -136,8 +142,6 @@ Flink's architecture is designed to efficiently scale and process large datasets
 
 - *JobManager*: Responsible for scheduling and managing the jobs submitted to Flink, orchestrating the execution plan by allocating resources for tasks.
 - *TaskManagers*: Execute user-defined functions on allocated resources across multiple nodes in a cluster, handling the actual computation tasks.
-
-_Addemdum_: Flink also supports CEP technology through its CEP module but we will not discuss it here
 
 === Apache Cassandra
 
@@ -241,7 +245,7 @@ This table provides a high-level view of how each technology fits within the lan
     [*Hadoop*], [Yes], [No], [Yes (HDFS)], [High],
     [*Kafka*], [Yes], [Yes], [Yes (Kafka Cluster)], [Very High],
     [*Storm*], [No], [Yes], [No], [High],
-    [*Spark*], [Yes], [Yes], [No], [Very High],
+    [*Spark*], [Yes], [Yes], [Yes], [Very High],
     [*Flink*], [Yes], [Yes], [No], [High],
     [*Flume*], [Yes], [No], [Yes (Avro Sink)], [Medium],
     [*Cassandra*], [Yes], [No], [Yes], [High],
@@ -263,7 +267,7 @@ Lambda Architecture is a data processing framework designed to handle massive vo
 batch processing and real-time stream processing techniques. This hybrid approach aims to address the challenges
 associated with processing big data by providing a scalable, fault-tolerant, and low-latency system capable of
 analyzing both historical and real-time data. As it is usual with real time data streaming, input data comes in the form
-of Apache Kafka (generally), due to its fast times and low latency @marz @compendium @fundamentals-lambda-kappa
+of Apache Kafka (generally), due to its low latency and high throughput @marz @compendium @fundamentals-lambda-kappa
 
 #figure(
     image("images/lambda.png"),
@@ -361,27 +365,27 @@ The StreamCube architecture is designed to facilitate online, multi-dimensional,
 
 ==== Core Techniques and Principles:
 
-- *Tilted Time Frame Model*: This model introduces a multi-resolution approach to time-related data registration. Recent data are registered at finer resolutions, allowing for more granular analysis, while older data are registered at coarser resolutions, reducing the overall storage requirements and aligning with common data analysis tasks [2].
+- *Tilted Time Frame Model*: This model introduces a multi-resolution approach to time-related data registration. Recent data are registered at finer resolutions, allowing for more granular analysis, while older data are registered at coarser resolutions, reducing the overall storage requirements and aligning with common data analysis tasks.
 
-- *Critical Layers and Observation Layer*: Instead of materializing cuboids at all levels, the architecture maintains a limited number of critical layers. This approach enables flexible analysis based on the observation layer and minimal interesting layer concepts, optimizing the system's resources for efficient query execution [2].
+- *Critical Layers and Observation Layer*: Instead of materializing cuboids at all levels, the architecture maintains a limited number of critical layers. This approach enables flexible analysis based on the observation layer and minimal interesting layer concepts, optimizing the system's resources for efficient query execution.
 
-- *Popular Path Algorithm*: The architecture employs an efficient stream data cubing algorithm that computes only the layers (cuboids) along a popular path, leaving other cuboids for query-driven, online computation. This method allows for the construction and maintenance of stream data cubes incrementally with a reasonable amount of memory, computation cost, and query response time [2].
+- *Popular Path Algorithm*: The architecture employs an efficient stream data cubing algorithm that computes only the layers (cuboids) along a popular path, leaving other cuboids for query-driven, online computation. This method allows for the construction and maintenance of stream data cubes incrementally with a reasonable amount of memory, computation cost, and query response time.
 
 ==== Challenges Addressed:
 
-- *Parallel Computation Based on Distributed Memory*: While many frameworks have addressed this challenge, StreamCube extends its capabilities to ensure efficient parallel computation across distributed systems [4].
+- *Parallel Computation Based on Distributed Memory*: While many frameworks have addressed this challenge, StreamCube extends its capabilities to ensure efficient parallel computation across distributed systems.
 
-- *Redundant Computation and Incremental Calculation Over Large Amounts of Historical Data*: By eliminating redundancy and grouping stream data into different nodes, StreamCube addresses the issue of redundant computation caused by time window shifts of different queries. It also tackles the difficulty of incremental calculation over vast amounts of historical data, enabling real-time computation of complex statistical metrics [4].
+- *Redundant Computation and Incremental Calculation Over Large Amounts of Historical Data*: By eliminating redundancy and grouping stream data into different nodes, StreamCube addresses the issue of redundant computation caused by time window shifts of different queries. It also tackles the difficulty of incremental calculation over vast amounts of historical data, enabling real-time computation of complex statistical metrics.
 
-- *Complex Logic Decomposition*: StreamCube decomposes the calculation of complex logic into an incremental scheme, facilitating real-time computation. This approach allows for the implementation of real-time computation of several complex statistical metrics, such as variance, standard deviation, covariance, and K order central moment, among others [4].
+- *Complex Logic Decomposition*: StreamCube decomposes the calculation of complex logic into an incremental scheme, facilitating real-time computation. This approach allows for the implementation of real-time computation of several complex statistical metrics, such as variance, standard deviation, covariance, and K order central moment, among others .
 
-- *Event Sequence Detection*: StreamCube faces the challenge of detecting event sequences based on stream data, especially those occurring across multiple dimensions or based on context. It addresses this by providing a fast dynamic data processing technology based on the incremental computation scheme, supporting the detection of user-defined event sequences [4].
+- *Event Sequence Detection*: StreamCube faces the challenge of detecting event sequences based on stream data, especially those occurring across multiple dimensions or based on context. It addresses this by providing a fast dynamic data processing technology based on the incremental computation scheme, supporting the detection of user-defined event sequences.
 
 === A novel architecture
 
-Additionally to the architectures before mentioned there is an architectural pattern rising which is to view each process in an ETL pipeline as a microservice. A microservice architecture is a design pattern where a big application or system is composed into several different chunks, each responsible for 1 and only 1 task. This leverages the single responsibility in the SOLID principles perfectly and makes the codebase easier to develop and maintain for a large team. @big-archive
+Additionally to the architectures mentioned there is an architectural pattern rising which is to view each process in an ETL pipeline as a microservice. A microservice architecture is a design pattern where a big application or system is composed into several different chunks, each responsible for 1 and only 1 task. This leverages the single responsibility in the SOLID principles perfectly and makes the codebase easier to develop and maintain for a large team. @big-archive
 
-In the sources @microservices the team covers how they implemented said design for a use case of smart ports and air quality monitoring and showed impressive results.
+In the source @microservices the team covers how they implemented said design for a use case of smart ports and air quality monitoring and showed impressive results.
 
 #figure(
     image("images/microservices.png"),
