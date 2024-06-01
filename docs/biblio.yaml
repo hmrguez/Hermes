@@ -1,0 +1,142 @@
+marz:
+  type: Book
+  title: "Big Data: Principles and Best Practices of Scalable Realtime Data Systems"
+  author: "Nathan Marz"
+  year: 2013
+  publisher: "Manning Publications"
+  isbn: "9781617290343"
+
+streamcube:
+  type: Article
+  title: "Real-time intelligent big data processing: technology, platform, and applications"
+  author:
+    - "Tongya ZHENG"
+    - "Gang CHEN"
+    - "Xinyu WANG"
+    - "Chun CHEN"
+    - "Xingen WANG"
+    - "Sihui LUO"
+  year: 2021
+  journal: "Science China Information Sciences"
+
+
+fundamentals-lambda-kappa:
+  type: Article
+  title: Fundamentals of Real-Time Data Processing Architectures Lambda and Kappa
+  author:
+    - "Martin Feick"
+    - "Niko Kleer"
+    - "Marek Kohn"
+  year: 2020
+  journal: "ACM Computing Surveys"
+  volume: 53
+  issue: 3
+  pages: "1-36"
+  doi: "10.1145/3397101"
+
+compendium:
+  type: Article
+  title: "Real-Time Big Data Processing and Analytics: Concepts, Technologies, and Domains"
+  author:
+    - "Uğur KEKEVİ"
+    - "Ahmet Arif AYDIN"
+  year: 2021
+  publisher: "Springer"
+  isbn: "9783030571053"
+
+big-archive:
+  type: Book
+  title: "System Design: The Big Archive"
+  author: "ByteByteGo"
+  year: 2021
+
+cep:
+  type: Book
+  title: "The Power of Events: An Introduction to Complex Event Processing in Distributed Enterprise Systems"
+  author: "David Luckham"
+  year: 2002
+  publisher: "Addison-Wesley"
+  isbn: "9780201727890"
+
+microservices:
+  type: Article
+  title: "A Microservice Architecture for Real-Time IoT Data Processing: A Reusable Web of Things Approach for Smart Ports"
+  author:
+    - "Guadalupe Ortiz"
+    - "Juan Boubeta-Puig"
+    - "Javier Criado"
+  year: 2019
+  journal: "Future Generation Computer Systems"
+  volume: 92
+  pages: "1104-1120"
+  doi: "10.1016/j.future.2018.12.038"
+
+kafka:
+  type: Web
+  title: "Apache Kafka Documentation"
+  url: "https://kafka.apache.org/documentation/"
+
+
+flink:
+  type: Web
+  title: "Apache Flink Documentation"
+  url: "https://ci.apache.org/projects/flink/flink-docs-stable/"
+
+flume:
+  type: Web
+  title: "Apache Flume Documentation"
+  url: "https://flume.apache.org/FlumeUserGuide.html"
+
+
+cassandra:
+  type: Web
+  title: "Apache Cassandra Documentation"
+  url: "https://cassandra.apache.org/doc/latest/"
+
+
+spark:
+  type: Web
+  title: "Apache Spark Documentation"
+  url: "https://spark.apache.org/docs/latest/"
+
+storm:
+  type: Web
+  title: "Apache Storm Documentation"
+  url: "https://storm.apache.org/releases/current/index.html"
+
+hadoop:
+  type: Web
+  title: "Apache Hadoop Documentation"
+  url: "https://hadoop.apache.org/docs/current/"
+
+fabric:
+  type: Web
+  title: "Microsoft Fabric Documentation"
+  url: "https://learn.microsoft.com/en-us/fabric/"
+
+kinesis:
+  type: Web
+  title: "AWS Kinesis Documentation"
+  url: "https://aws.amazon.com/kinesis/"
+
+
+databricks:
+  type: Web
+  title: "Databricks Documentation"
+  url: "https://docs.databricks.com/en/index.html"
+
+azure-event-hub:
+  type: Web
+  title: "Azure Event Hubs Documentation"
+  url: "https://learn.microsoft.com/en-us/azure/event-hubs/"
+
+gcp-pubsub:
+  type: Web
+  title: "GCP Pub Sub Documentation"
+  url: "https://cloud.google.com/pubsub/docs"
+
+esper:
+  type: Web
+  title: "Esper Documentation"
+  url: "https://esper.espertech.com/release-9.0.0/reference-esper/html/index.html"
+

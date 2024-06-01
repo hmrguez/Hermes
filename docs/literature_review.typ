@@ -16,7 +16,7 @@ Big data is what we call a vast amount of data that can be ingested, processed a
 
 ETL, standing for Extract, Transform, and Load, is a fundamental process in data warehousing and data integration. It
 involves extracting data from various sources, transforming it into a standardized format, and then loading it into a
-data warehouse or another target system for analysis, reporting, and data-driven decision-making.
+data warehouse or another target system for analysis, reporting, and data-driven decision-making. @big-archive
 
 The initial step in the ETL process involves extracting data from multiple sources. These sources can include
   relational databases, NoSQL databases, flat files, spreadsheets, and web services. The extracted data is typically
@@ -42,21 +42,21 @@ Nowadays there are mainly two ways to process data: batch processing and stream 
 
 === Lambda Architecture
 
-Proposed by Nathan Marz is a data processing architecture designed to handle massive quantities of data by taking advantage of both batch and stream processing methods. The architecture is composed of three layers: the batch layer, the speed layer, and the serving layer. The batch layer is responsible for storing and processing large amounts of data in a fault-tolerant manner. The speed layer is responsible for processing real-time data and providing up-to-date results. The serving layer is responsible for querying and serving the results of the batch and speed layers. The Lambda Architecture is designed to be fault-tolerant, scalable, and extensible (Marz, 2015).
+Proposed by Nathan Marz is a data processing architecture designed to handle massive quantities of data by taking advantage of both batch and stream processing methods. The architecture is composed of three layers: the batch layer, the speed layer, and the serving layer. The batch layer is responsible for storing and processing large amounts of data in a fault-tolerant manner. The speed layer is responsible for processing real-time data and providing up-to-date results. The serving layer is responsible for querying and serving the results of the batch and speed layers. The Lambda Architecture is designed to be fault-tolerant, scalable, and extensible @marz @fundamentals-lambda-kappa
 
 === Kappa Architecture
 
-Introduced by Jay Kreps, the Kappa architecture simplifies the Lambda model by removing the batch layer, thus relying solely on stream processing. This approach aims to reduce the complexity and latency associated with maintaining separate batch and real-time systems (Kreps, 2014).
+Introduced by Jay Kreps, the Kappa architecture simplifies the Lambda model by removing the batch layer, thus relying solely on stream processing. This approach aims to reduce the complexity and latency associated with maintaining separate batch and real-time systems @fundamentals-lambda-kappa.
 
 === EDA & CEP
 
-EDA (Event Driven Architecture) is a design paradigm where the flow of the program is determined by events such as user actions, sensor outputs, or messages from other programs. In EDA, components produce, detect, consume, and react to events. This architecture supports real-time interactive processing and is highly suitable for scenarios like the Internet of Things (IoT), where devices generate and consume events. The key components of EDA include event producers, event channels, and event consumers. Producers create event messages that flow through channels to consumers, which then take specific actions based on the events. This setup ensures loose coupling between components, allowing for scalability and flexibility. EDA enables disparate applications to interact effectively, facilitating rapid response to both simple and complex event dependencies (Luckham, 2002).
+EDA (Event Driven Architecture) is a design paradigm where the flow of the program is determined by events such as user actions, sensor outputs, or messages from other programs. In EDA, components produce, detect, consume, and react to events. This architecture supports real-time interactive processing and is highly suitable for scenarios like the Internet of Things (IoT), where devices generate and consume events. The key components of EDA include event producers, event channels, and event consumers. Producers create event messages that flow through channels to consumers, which then take specific actions based on the events. This setup ensures loose coupling between components, allowing for scalability and flexibility. EDA enables disparate applications to interact effectively, facilitating rapid response to both simple and complex event dependencies @cep.
 
-CEP (Complex Event Processing) extends beyond simple event processing by dealing with patterns, combinations, and correlations of events. It involves detecting and managing complex relationships among events, which can be causal, temporal, or spatial. CEP systems analyze real-time data streams to identify meaningful patterns and insights, enabling proactive and timely responses to business opportunities or threats. Unlike simple event processing, CEP considers historical data and aggregations, providing a more comprehensive view of the data. This capability is crucial for industries where real-time decision-making is vital, such as finance, healthcare, and transportation (Luckham, 2002).
+CEP (Complex Event Processing) extends beyond simple event processing by dealing with patterns, combinations, and correlations of events. It involves detecting and managing complex relationships among events, which can be causal, temporal, or spatial. CEP systems analyze real-time data streams to identify meaningful patterns and insights, enabling proactive and timely responses to business opportunities or threats. Unlike simple event processing, CEP considers historical data and aggregations, providing a more comprehensive view of the data. This capability is crucial for industries where real-time decision-making is vital, such as finance, healthcare, and transportation @cep.
 
 === A new architecture
 
-StreamCube is a novel data processing architecture that combines batch and stream processing to provide a unified approach to querying data. It leverages the strengths of both batch and stream processing to deliver real-time analytics on large-scale datasets. StreamCube is designed to handle complex queries efficiently by partitioning data into cubes and processing them in parallel. This architecture enables users to query data in real time, providing insights into the data as it arrives. (Zhang et al., 2018).
+StreamCube is a novel data processing architecture that combines batch and stream processing to provide a unified approach to querying data. It leverages the strengths of both batch and stream processing to deliver real-time analytics on large-scale datasets. StreamCube is designed to handle complex queries efficiently by partitioning data into cubes and processing them in parallel. This architecture enables users to query data in real time, providing insights into the data as it arrives. @streamcube
 
 == Technologies and frameworks
 
@@ -71,11 +71,11 @@ Beyond core processing frameworks, the Apache family includes a range of special
 Apache Hadoop is a powerful framework designed for processing large volumes of data across clusters of computers using
 simple programming models. It is built to scale up from single servers to thousands of machines, each offering local
 computation and storage. At the heart of Hadoop is the MapReduce programming model, which enables the processing of vast
-amounts of data in parallel on large clusters of commodity hardware in a reliable and fault-tolerant manner
+amounts of data in parallel on large clusters of commodity hardware in a reliable and fault-tolerant manner @hadoop
 
 ==== How does MapReduce work?
 
-MapReduce is a software framework for writing applications that process large amounts of data in parallel on large clusters of commodity hardware. It simplifies the process of dealing with large data sets by breaking down the work into smaller tasks that can be executed independently and in parallel. This approach significantly improves efficiency and throughput, especially when dealing with multi-terabyte data sets. It works the following way:
+MapReduce is a software framework for writing applications that process large amounts of data in parallel on large clusters of commodity hardware. It simplifies the process of dealing with large data sets by breaking down the work into smaller tasks that can be executed independently and in parallel. This approach significantly improves efficiency and throughput, especially when dealing with multi-terabyte data sets @hadoop. It works the following way:
 
 - *Input*: A MapReduce job typically starts with a dataset stored in a distributed file system like Hadoop Distributed
   File System (HDFS). The input data is divided into independent chunks, which are processed by the map tasks in
@@ -96,7 +96,7 @@ MapReduce is a software framework for writing applications that process large am
 MapReduce is particularly useful when doing batch processing work but not when dealing with streaming data as we will see later
 
 ==== Apache Kafka
- Apache Kafka is a distributed data streaming platform designed for real-time data processing. It is optimized for ingesting and processing streaming data, making it suitable for building real-time streaming data pipelines and applications. Kafka's architecture allows it to handle the constant influx of data from thousands of data sources, processing this data sequentially and incrementally. It combines messaging, storage, and stream processing functionalities to enable the storage and analysis of both historical and real-time data
+ Apache Kafka is a distributed data streaming platform designed for real-time data processing. It is optimized for ingesting and processing streaming data, making it suitable for building real-time streaming data pipelines and applications. Kafka's architecture allows it to handle the constant influx of data from thousands of data sources, processing this data sequentially and incrementally. It combines messaging, storage, and stream processing functionalities to enable the storage and analysis of both historical and real-time data @kafka
 
  Kafka operates on a publish-subscribe model, where data is published to topics and consumed by subscribers. This model facilitates the efficient distribution of data across multiple consumers, ensuring low-latency and high-throughput data processing. Kafka's ability to process data streams in real-time supports continuous data ingestion and real-time analytics, empowering businesses to make timely and data-driven decisions
 
@@ -105,7 +105,7 @@ Key components of Kafka include producers, consumers, topics, and events. Produc
 Kafka's benefits extend beyond its core functionality. It offers faster processing speeds compared to other platforms, enabling near-zero latency real-time data streaming. This capability is crucial for performing real-time data analytics and making quick business decisions. Additionally, Kafka Connect, a component of Apache Kafka, serves as a centralized data hub, facilitating integration between various data systems and accelerating the development of applications. Kafka's scalability and durability ensure that production clusters can be adjusted based on demand, with fault tolerance and intra-cluster replication providing high durability for the data it handles
 
 === Apache Spark
- Apache Spark is a unified analytics engine designed for large-scale data processing. It is known for its speed, ease of use, and versatility, making it a popular choice for both batch and real-time data processing. Spark's architecture supports a wide range of data processing tasks, including ETL (Extract, Transform, Load), data warehousing, machine learning, and graph processing. It can operate on data stored in various formats and locations, such as HDFS, HBase, Cassandra, and any HDFS-compatible data source
+ Apache Spark is a unified analytics engine designed for large-scale data processing. It is known for its speed, ease of use, and versatility, making it a popular choice for both batch and real-time data processing. Spark's architecture supports a wide range of data processing tasks, including ETL (Extract, Transform, Load), data warehousing, machine learning, and graph processing. It can operate on data stored in various formats and locations, such as HDFS, HBase, Cassandra, and any HDFS-compatible data source @spark
 
 Spark Streaming is a component of Apache Spark that enables real-time data processing. It allows users to process live data streams in real-time, making it suitable for applications that require immediate insights from incoming data. Spark Streaming achieves this by dividing the data stream into micro-batches, processing each micro-batch as a separate RDD (Resilient Distributed Dataset). These RDDs can then be transformed and acted upon using Spark's standard operations, such as map, filter, and reduceByKey
 
@@ -116,7 +116,7 @@ Spark's architecture includes several components, such as the Driver Program, Cl
 
 === Apache Storm
 
-Apache Storm is a distributed real-time computation system designed to process unbounded streams of data with high throughput and low latency. It is often described as doing for real-time processing what Hadoop did for batch processing, emphasizing its role in enabling real-time analytics, online machine learning, continuous computation, distributed RPC, ETL, and more Storm's architecture and features make it a powerful tool for handling real-time data processing tasks, ensuring that data is processed reliably and efficiently.
+Apache Storm is a distributed real-time computation system designed to process unbounded streams of data with high throughput and low latency. It is often described as doing for real-time processing what Hadoop did for batch processing, emphasizing its role in enabling real-time analytics, online machine learning, continuous computation, distributed RPC, ETL, and more Storm's architecture and features make it a powerful tool for handling real-time data processing tasks, ensuring that data is processed reliably and efficiently. @storm
 
 Apache Storm is designed for real-time data processing. Its architecture revolves around spouts and bolts, which are the primary components of a Storm topology.
 
@@ -128,7 +128,7 @@ These components work together to enable real-time data processing in Storm. The
 
 ==== Apache Flink
 
-Apache Flink is a powerful, open-source framework and distributed processing engine designed for stateful computations over unbounded and bounded data streams. It stands out for its ability to perform computations at in-memory speeds and at any scale, making it suitable for a wide range of applications from real-time analytics to complex event processing.
+Apache Flink is a powerful, open-source framework and distributed processing engine designed for stateful computations over unbounded and bounded data streams. It stands out for its ability to perform computations at in-memory speeds and at any scale, making it suitable for a wide range of applications from real-time analytics to complex event processing. @flink
 
 It is built around the concept of DataStream API, which allows users to define and execute data processing pipelines on streaming data. Flink's architecture supports both batch and stream processing, enabling users to seamlessly switch between the two modes. This flexibility is particularly useful for applications that require both real-time and batch processing capabilities.
 
@@ -141,7 +141,7 @@ _Addemdum_: Flink also supports CEP technology through its CEP module but we wil
 
 === Apache Cassandra
 
-Apache Cassandra is a highly scalable, high-performance distributed database designed to handle large amounts of data across many commodity servers, providing high availability with no single point of failure. It is often used in scenarios requiring real-time data processing and batch processing due to its ability to handle high write loads and provide fast read latencies. Let's explore how Cassandra can be utilized for both real-time and batch processing scenarios.
+Apache Cassandra is a highly scalable, high-performance distributed database designed to handle large amounts of data across many commodity servers, providing high availability with no single point of failure. It is often used in scenarios requiring real-time data processing and batch processing due to its ability to handle high write loads and provide fast read latencies. Let's explore how Cassandra can be utilized for both real-time and batch processing scenarios. @cassandra
 
 Cassandra is well-suited for real-time data processing, especially when dealing with high-volume transactions. Its design emphasizes high availability, partition tolerance, and eventual consistency, making it an excellent choice for applications that require consistent performance under heavy load. For real-time applications, such as feature stores, Cassandra can serve features with a typical p99 latency of less than 23 milliseconds, as demonstrated by its use by companies like Uber and Netflix
 
@@ -151,7 +151,7 @@ While Cassandra shines in real-time scenarios, it also supports batch processing
 
 === Apache Flume
 
-Apache Flume is a distributed, reliable, and available system designed for efficiently collecting, aggregating, and moving large volumes of streaming data. Originated at Cloudera and now developed by the Apache Software Foundation, Flume is widely used in big data environments for ingesting log files, social media data, clickstreams, and other high-volume data sources. Its primary purpose is to simplify the data ingestion process, ensuring reliable delivery and fault tolerance in distributed systems. Flume supports data ingestion from various sources, including web servers, databases, and application logs, and facilitates data flow to a distributed filesystem or data lake where it can be analyzed by data processing frameworks like Apache Hadoop and Apache Spark
+Apache Flume is a distributed, reliable, and available system designed for efficiently collecting, aggregating, and moving large volumes of streaming data. Originated at Cloudera and now developed by the Apache Software Foundation, Flume is widely used in big data environments for ingesting log files, social media data, clickstreams, and other high-volume data sources. Its primary purpose is to simplify the data ingestion process, ensuring reliable delivery and fault tolerance in distributed systems. Flume supports data ingestion from various sources, including web servers, databases, and application logs, and facilitates data flow to a distributed filesystem or data lake where it can be analyzed by data processing frameworks like Apache Hadoop and Apache Spark @flume
 
 Flume operates on a modular design with customizable components, enabling flexible and scalable architectures. It is particularly well-suited for collecting log files from different sources such as web servers, application servers, and network devices, and then transporting them to centralized storage or analytics systems. This makes it an essential tool for big data analytics, enabling organizations to analyze vast amounts of data efficiently
 
@@ -173,7 +173,7 @@ MongoDB employs sharding to distribute data across multiple servers, enabling ho
 
 === Esper
 
-Esper is an open-source CEP engine that allows for the creation of complex event queries using a SQL-like syntax. Esper is designed to run on a single machine, making it suitable for lightweight applications or development environments.
+Esper is an open-source CEP engine that allows for the creation of complex event queries using a SQL-like syntax. Esper is designed to run on a single machine, making it suitable for lightweight applications or development environments. @esper
 
 Esper operates by continuously searching through incoming event streams for predefined patterns. When a match is found, it generates a "complex event," which can trigger alerts, notifications, or further actions based on the defined logic. This makes Esper highly versatile for applications ranging from fraud detection to monitoring manufacturing processes.
 
@@ -192,7 +192,7 @@ your cloud account, managing and deploying cloud infrastructure on your behalf. 
 ability to connect various data sources to a single platform, facilitating the processing, storage, sharing, analysis,
 modeling, and monetization of datasets. This platform is versatile, supporting a wide range of data tasks including data
 processing scheduling and management, generating dashboards and visualizations, managing security and governance, and
-supporting machine learning and generative AI solutions
+supporting machine learning and generative AI solutions @databricks
 
 The platform is built on top of Apache Spark, optimized for cloud environments, and offers scalability for both
 small-scale and large-scale jobs. It supports multiple coding languages through a notebook interface, allowing
@@ -212,15 +212,15 @@ interpretation
 
 Cloud-native ingestion technologies have evolved significantly over the years, driven by the need for real-time data processing and analytics across various industries. At the forefront of this evolution are Amazon Kinesis, Google Cloud Pub/Sub, and Azure Event Hubs, each offering unique capabilities tailored to different cloud environments and use cases.
 
-Amazon Kinesis stands out for its comprehensive suite of real-time data streaming services, designed to handle everything from live video streams to log files. Its strength lies in its ability to ingest, process, and analyze streaming data in real time, making it ideal for applications ranging from real-time analytics to machine learning. Kinesis is deeply integrated with other AWS services, facilitating the creation of end-to-end data processing pipelines. Its scalability, performance, and robust security features make it a go-to choice for enterprises heavily invested in the AWS ecosystem.
+Amazon Kinesis stands out for its comprehensive suite of real-time data streaming services, designed to handle everything from live video streams to log files. Its strength lies in its ability to ingest, process, and analyze streaming data in real time, making it ideal for applications ranging from real-time analytics to machine learning. Kinesis is deeply integrated with other AWS services, facilitating the creation of end-to-end data processing pipelines. Its scalability, performance, and robust security features make it a go-to choice for enterprises heavily invested in the AWS ecosystem. @kinesis
 
-Google Cloud Pub/Sub is a messaging service that excels in scenarios requiring real-time event-driven architectures. It supports high-throughput and low-latency data ingestion, making it suitable for a wide array of applications, from chat and messaging systems to IoT device telemetry. Pub/Sub's integration with other Google Cloud services, such as Cloud Dataflow for data transformation and Cloud Functions for event-triggered computations, enhances its versatility. Its scalability and reliability, backed by a strong SLA, position it as a reliable choice for building resilient, real-time data processing systems.
+Google Cloud Pub/Sub is a messaging service that excels in scenarios requiring real-time event-driven architectures. It supports high-throughput and low-latency data ingestion, making it suitable for a wide array of applications, from chat and messaging systems to IoT device telemetry. Pub/Sub's integration with other Google Cloud services, such as Cloud Dataflow for data transformation and Cloud Functions for event-triggered computations, enhances its versatility. Its scalability and reliability, backed by a strong SLA, position it as a reliable choice for building resilient, real-time data processing systems. @gcp-pubsub
 
-Azure Event Hubs serves as a central hub for big data pipelines, capable of receiving and processing millions of events per second. It is particularly well-suited for IoT solutions, where it can aggregate data from numerous devices before routing it to storage or analytics services. Azure Event Hubs' integration with Azure services, such as Azure Stream Analytics for real-time analytics and Azure Machine Learning for predictive modeling, makes it a powerful tool for developing sophisticated, data-driven applications. Its scalability, performance, and security features cater to the demands of modern, cloud-centric applications.
+Azure Event Hubs serves as a central hub for big data pipelines, capable of receiving and processing millions of events per second. It is particularly well-suited for IoT solutions, where it can aggregate data from numerous devices before routing it to storage or analytics services. Azure Event Hubs' integration with Azure services, such as Azure Stream Analytics for real-time analytics and Azure Machine Learning for predictive modeling, makes it a powerful tool for developing sophisticated, data-driven applications. Its scalability, performance, and security features cater to the demands of modern, cloud-centric applications. @azure-event-hub
 
 === Microsoft Fabric
 
-Microsoft Fabric is an innovative, end-to-end analytics and data platform designed to address the comprehensive needs of enterprises seeking a unified solution for data movement, processing, ingestion, transformation, real-time event routing, and report building. It consolidates a variety of services, including Data Engineering, Data Factory, Data Science, Real-Time Analytics, Data Warehouse, and Databases, into a single, seamlessly integrated platform. This integration eliminates the necessity for assembling services from multiple vendors, offering instead a user-friendly platform that simplifies analytics requirements. Operating on a Software as a Service (SaaS) model, Fabric brings about simplicity and integration to analytics solutions, leveraging OneLake for centralized data storage and embedding AI capabilities to enhance data processing and insights generation
+Microsoft Fabric is an innovative, end-to-end analytics and data platform designed to address the comprehensive needs of enterprises seeking a unified solution for data movement, processing, ingestion, transformation, real-time event routing, and report building. It consolidates a variety of services, including Data Engineering, Data Factory, Data Science, Real-Time Analytics, Data Warehouse, and Databases, into a single, seamlessly integrated platform. This integration eliminates the necessity for assembling services from multiple vendors, offering instead a user-friendly platform that simplifies analytics requirements. Operating on a Software as a Service (SaaS) model, Fabric brings about simplicity and integration to analytics solutions, leveraging OneLake for centralized data storage and embedding AI capabilities to enhance data processing and insights generation @fabric
 
 Fabric's architecture is built to foster a highly integrated ecosystem of analytics services, promoting seamless data flow between different stages of the analytics pipeline. This integration reduces data silos and enhances efficiency, allowing enterprises to utilize their preferred analytics tools while keeping data in its current location. As a SaaS platform, Fabric handles infrastructure setup and maintenance, enabling organizations to focus on leveraging its analytics capabilities rather than managing the underlying infrastructure. It is designed to scale effortlessly to accommodate varying workloads, ensuring that enterprises can efficiently handle large volumes of data and analytic tasks without experiencing performance bottlenecks.
 
@@ -230,7 +230,7 @@ Finally, Fabric stands out for its user-friendly interface, making it accessible
 
 === Summary
 
-This table provides a high-level view of how each technology fits within the landscape of big data processing and storage. It's important to note that the capabilities of these technologies can vary significantly depending on the specific version, configuration, and use case. Additionally, many of these technologies can be combined or extended with other tools to achieve more complex or specialized requirements.
+This table provides a high-level view of how each technology fits within the landscape of big data processing and storage. It's important to note that the capabilities of these technologies can vary significantly depending on the specific version, configuration, and use case. Additionally, many of these technologies can be combined or extended with other tools to achieve more complex or specialized requirements. @compendium
 
 #table(
   columns: (1.4fr, 0.8fr, 1fr, 1fr, 1fr),
@@ -263,10 +263,10 @@ Lambda Architecture is a data processing framework designed to handle massive vo
 batch processing and real-time stream processing techniques. This hybrid approach aims to address the challenges
 associated with processing big data by providing a scalable, fault-tolerant, and low-latency system capable of
 analyzing both historical and real-time data. As it is usual with real time data streaming, input data comes in the form
-of Apache Kafka (generally), due to its fast times and low latency
+of Apache Kafka (generally), due to its fast times and low latency @marz @compendium @fundamentals-lambda-kappa
 
 #figure(
-    image("images/lambda.svg"),
+    image("images/lambda.png"),
     caption: [
         Lambda Architecture
     ]
@@ -309,7 +309,7 @@ traditional batch processing architectures towards real-time data processing. It
 pipeline by focusing exclusively on processing data in real-time, eliminating the need for separate batch and real-time
 processing paths found in Lambda Architecture. This architecture is centered around the concept of an immutable data
 log, where all data—historical and real-time—is ingested and stored in a centralized log, serving as the single source
-of truth for continuous processing and analysis of data streams .
+of truth for continuous processing and analysis of data streams. @compendium @fundamentals-lambda-kappa
 
 #figure(
     image("images/kappa.png"),
@@ -357,7 +357,7 @@ of truth for continuous processing and analysis of data streams .
 
 === StreamCube
 
-The StreamCube architecture is designed to facilitate online, multi-dimensional, and multi-level analysis of stream data, addressing the challenges posed by the massive volumes of data generated in real-time surveillance systems, telecommunications, and other dynamic environments. This architecture is built upon several key components and principles aimed at efficient and effective computation of stream cubes, which are essential for discovering high-level characteristics such as trends and outliers within the data.
+The StreamCube architecture is designed to facilitate online, multi-dimensional, and multi-level analysis of stream data, addressing the challenges posed by the massive volumes of data generated in real-time surveillance systems, telecommunications, and other dynamic environments. This architecture is built upon several key components and principles aimed at efficient and effective computation of stream cubes, which are essential for discovering high-level characteristics such as trends and outliers within the data. @streamcube
 
 ==== Core Techniques and Principles:
 
@@ -379,9 +379,9 @@ The StreamCube architecture is designed to facilitate online, multi-dimensional,
 
 === A novel architecture
 
-Additionally to the architectures before mentioned there is an architectural pattern rising which is to view each process in an ETL pipeline as a microservice. A microservice architecture is a design pattern where a big application or system is composed into several different chunks, each responsible for 1 and only 1 task. This leverages the single responsibility in the SOLID principles perfectly and makes the codebase easier to develop and maintain for a large team.
+Additionally to the architectures before mentioned there is an architectural pattern rising which is to view each process in an ETL pipeline as a microservice. A microservice architecture is a design pattern where a big application or system is composed into several different chunks, each responsible for 1 and only 1 task. This leverages the single responsibility in the SOLID principles perfectly and makes the codebase easier to develop and maintain for a large team. @big-archive
 
-In the sources [1] the team covers how they implemented said design for a use case of smart ports and air quality monitoring and showed impressive results.
+In the sources @microservices the team covers how they implemented said design for a use case of smart ports and air quality monitoring and showed impressive results.
 
 #figure(
     image("images/microservices.png"),
@@ -390,7 +390,16 @@ In the sources [1] the team covers how they implemented said design for a use ca
     ]
 )
 
-_Addendum: The design implemented is not exactly the same as the one in the diagram since the services used are not the same technologies but rather equivalents, however the core idea is the same._
+_Addendum: The design implemented is not exactly the same as the one in the diagram since the services used don't use same technologies but rather equivalent ones, however the core idea is the same._
 
 Essentially what they achieved was to split the ETL process into several layers: Data Source Layer, Filtering Layer, Processing Layer and Serving Layer, each handling its respective tasks and possibly decomposing into several microservices, one for each subtask
+
+== Conclusion
+
+This is an overview of the current technologies and architectures that most of the data professionals use for real time data processing. Choosing the right one for the job can vary because of different factors like availability in your region, your team's capabilities or your specific use case, there's no silver bullet here.
+
+#bibliography(
+    "biblio.yaml",
+    title: "References"
+)
 
