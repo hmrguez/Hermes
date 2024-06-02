@@ -8,7 +8,7 @@ University of Havana
 
 ## Requirements
 
-You need to have typst installed in your system. 
+You need to have [typst](https://typst.app/) installed on your system. 
 
 # Startup
 
