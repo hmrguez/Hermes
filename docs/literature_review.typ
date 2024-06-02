@@ -132,7 +132,7 @@ Apache Storm is designed for real-time data processing. Its architecture revolve
 
 These components work together to enable real-time data processing in Storm. The output of a spout is connected to the input of bolts, and the output of a bolt is connected to the input of other bolts, forming a directed acyclic graph (DAG) that defines the flow of data through the topology
 
-==== Apache Flink
+=== Apache Flink
 
 Apache Flink is a powerful, open-source framework and distributed processing engine designed for stateful computations over unbounded and bounded data streams. It stands out for its ability to perform computations at in-memory speeds and at any scale, making it suitable for a wide range of applications from real-time analytics to complex event processing. @flink
 
@@ -256,7 +256,6 @@ This table provides a high-level view of how each technology fits within the lan
     [*AWS Kinesis*], [Yes], [Yes], [No], [High],
     [*Azure Event Hubs*], [Yes], [Yes], [No], [High],
     [*GCP Pub/Sub*], [Yes], [Yes], [No], [High],
-
 )
 
 == Diving Deep in Architecture
