@@ -218,19 +218,15 @@ Cloud-native ingestion technologies have evolved significantly over the years, d
 
 Amazon Kinesis stands out for its comprehensive suite of real-time data streaming services, designed to handle everything from live video streams to log files. Its strength lies in its ability to ingest, process, and analyze streaming data in real time, making it ideal for applications ranging from real-time analytics to machine learning. Kinesis is deeply integrated with other AWS services, facilitating the creation of end-to-end data processing pipelines. Its scalability, performance, and robust security features make it a go-to choice for enterprises heavily invested in the AWS ecosystem. @kinesis
 
-Google Cloud Pub/Sub is a messaging service that excels in scenarios requiring real-time event-driven architectures. It supports high-throughput and low-latency data ingestion, making it suitable for a wide array of applications, from chat and messaging systems to IoT device telemetry. Pub/Sub's integration with other Google Cloud services, such as Cloud Dataflow for data transformation and Cloud Functions for event-triggered computations, enhances its versatility. Its scalability and reliability, backed by a strong SLA, position it as a reliable choice for building resilient, real-time data processing systems. @gcp-pubsub
-
 Azure Event Hubs serves as a central hub for big data pipelines, capable of receiving and processing millions of events per second. It is particularly well-suited for IoT solutions, where it can aggregate data from numerous devices before routing it to storage or analytics services. Azure Event Hubs' integration with Azure services, such as Azure Stream Analytics for real-time analytics and Azure Machine Learning for predictive modeling, makes it a powerful tool for developing sophisticated, data-driven applications. Its scalability, performance, and security features cater to the demands of modern, cloud-centric applications. @azure-event-hub
 
-=== Microsoft Fabric
+=== Cloud Native ETL
 
-Microsoft Fabric is an innovative, end-to-end analytics and data platform designed to address the comprehensive needs of enterprises seeking a unified solution for data movement, processing, ingestion, transformation, real-time event routing, and report building. It consolidates a variety of services, including Data Engineering, Data Factory, Data Science, Real-Time Analytics, Data Warehouse, and Databases, into a single, seamlessly integrated platform. This integration eliminates the necessity for assembling services from multiple vendors, offering instead a user-friendly platform that simplifies analytics requirements. Operating on a Software as a Service (SaaS) model, Fabric brings about simplicity and integration to analytics solutions, leveraging OneLake for centralized data storage and embedding AI capabilities to enhance data processing and insights generation @fabric
+With the exponential growth of data and the increasing demand for analytics-driven insights, businesses are migrating their ETL processes to the cloud for greater scalability, flexibility, and cost-efficiency. Cloud-based ETL solutions offer advantages such as reduced infrastructure management, seamless integration with other cloud services, and the ability to handle diverse data sources and formats. This migration empowers organizations to leverage the power of cloud computing to streamline their data integration workflows and unlock the full potential of their data assets.
 
-Fabric's architecture is built to foster a highly integrated ecosystem of analytics services, promoting seamless data flow between different stages of the analytics pipeline. This integration reduces data silos and enhances efficiency, allowing enterprises to utilize their preferred analytics tools while keeping data in its current location. As a SaaS platform, Fabric handles infrastructure setup and maintenance, enabling organizations to focus on leveraging its analytics capabilities rather than managing the underlying infrastructure. It is designed to scale effortlessly to accommodate varying workloads, ensuring that enterprises can efficiently handle large volumes of data and analytic tasks without experiencing performance bottlenecks.
+Azure Data Factory is a cloud-based data integration service by Microsoft, providing ETL (Extract, Transform, Load) capabilities among other features. ADF allows users to create, schedule, and orchestrate data workflows for extracting data from various sources, transforming it as needed, and loading it into destinations such as data lakes, databases, or data warehouses. With its intuitive visual interface and support for diverse data sources, ADF enables users to design complex data pipelines for ETL processes. Additionally, Azure Data Factory integrates seamlessly with other Azure services, offering a comprehensive solution for data integration, analytics, and insights within the Azure ecosystem. @adf
 
-One of the key advantages of Microsoft Fabric is its comprehensive analytics suite, which covers everything from data movement to data science, real-time analytics, and business intelligence. This all-in-one solution simplifies the analytics workflow by eliminating the need to invest in and manage multiple disparate tools. Additionally, Fabric offers advanced data science capabilities, providing tools and resources for data scientists to perform complex data analysis, build machine learning models, and derive predictive insights. This supports data-driven innovation and optimization, making Fabric a compelling choice for enterprises looking to streamline their analytics processes and optimize data-driven decision-making
-
-Finally, Fabric stands out for its user-friendly interface, making it accessible to both technical and non-technical employees. This democratization of data analytics across teams, combined with strong security protections and compliance certifications, positions Fabric as a secure, compliant, and cost-effective solution for enterprises. The platform's ability to connect to existing PaaS offerings and allow customers to upgrade at their own pace indicates its compatibility with evolving analytics strategies, marking an evolution of Microsoft's analytics solutions towards a simplified, unified SaaS offering
+AWS Glue, a fully managed ETL service provided by Amazon Web Services, simplifies the process of preparing and loading data for analytics. Offering both visual and script-based options, Glue automates the generation of ETL scripts and maintains a comprehensive data catalog for efficient data discovery and management. Its serverless architecture eliminates the need for infrastructure management, while flexible job scheduling capabilities automate ETL workflows. Integration with other AWS services like S3 and Redshift ensures seamless data integration across the AWS ecosystem, making Glue a versatile and powerful solution for cloud-based ETL. @glue
 
 === Summary
 
@@ -252,11 +248,9 @@ This table provides a high-level view of how each technology fits within the lan
     [*MongoDB*], [Yes], [No], [Yes], [High],
     [*Esper*], [No], [Yes], [No], [Medium],
     [*Databricks*], [Yes], [Yes], [No], [High],
-    [*Microsoft Fabric*], [Yes], [Yes], [Yes], [High],
-    [*AWS Kinesis*], [Yes], [Yes], [No], [High],
-    [*Azure Event Hubs*], [Yes], [Yes], [No], [High],
-    [*GCP Pub/Sub*], [Yes], [Yes], [No], [High],
 )
+
+_Cloud based solutions offer somewhat the same capabilities between each category_
 
 == Diving Deep in Architecture
 

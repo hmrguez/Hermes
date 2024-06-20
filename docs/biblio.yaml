@@ -140,3 +140,14 @@ esper:
   title: "Esper Documentation"
   url: "https://esper.espertech.com/release-9.0.0/reference-esper/html/index.html"
 
+adf:
+  type: Web
+  title: "Azure Data Factory Documentation"
+  url: "https://azure.microsoft.com/en-us/products/data-factory"
+
+
+glue:
+  type: Web
+  title: "AWS Glue Documentation"
+  url: "https://aws.amazon.com/glue/"
+
