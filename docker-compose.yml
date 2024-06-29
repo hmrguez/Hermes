@@ -10,15 +10,15 @@ services:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
     healthcheck:
-      test: ["CMD", "bash", "-c", "echo 'ruok' | nc localhost 2181"]
+      test: [ "CMD", "bash", "-c", "echo 'ruok' | nc localhost 2181" ]
       interval: 10s
       timeout: 5s
       retries: 5
 
-  broker:
+  kafka:
     image: confluentinc/cp-kafka:7.6.1
-    hostname: broker
-    container_name: broker
+    hostname: kafka
+    container_name: kafka
     depends_on:
       zookeeper:
         condition: service_healthy
@@ -43,3 +43,23 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+
+  jobmanager:
+    image: flink:latest
+    command: jobmanager
+    container_name: jobmanager
+    ports:
+      - "8081:8081"
+    environment:
+      - JOB_MANAGER_RPC_ADDRESS=jobmanager
+      - TASK_MANAGER_NUMBER_OF_TASK_SLOTS=4
+
+  taskmanager:
+    image: flink:latest
+    command: taskmanager
+    container_name: taskmanager
+    depends_on:
+      - jobmanager
+    environment:
+      - JOB_MANAGER_RPC_ADDRESS=jobmanager
+      - TASK_MANAGER_NUMBER_OF_TASK_SLOTS=4

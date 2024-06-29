@@ -1,7 +1,10 @@
 package Dto;
 
+import lombok.Data;
+
 import java.sql.Timestamp;
 
+@Data
 public class Transaction {
     private String transaction_id;
     private String product_id;
@@ -12,6 +15,5 @@ public class Transaction {
     private String brand;
     private String currency;
     private String customer_id;
-    private Timestamp transaction_date;
     private String payment_method;
 }

@@ -1,19 +1,2 @@
 version: '3.1'
 services:
-  jobmanager:
-    image: flink:latest
-    command: jobmanager
-    ports:
-      - "8081:8081"
-    environment:
-      - JOB_MANAGER_RPC_ADDRESS=jobmanager
-      - TASK_MANAGER_NUMBER_OF_TASK_SLOTS=4
-
-  taskmanager:
-    image: flink:latest
-    command: taskmanager
-    depends_on:
-      - jobmanager
-    environment:
-      - JOB_MANAGER_RPC_ADDRESS=jobmanager
-      - TASK_MANAGER_NUMBER_OF_TASK_SLOTS=4

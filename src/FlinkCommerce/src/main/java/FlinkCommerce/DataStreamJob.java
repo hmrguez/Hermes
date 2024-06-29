@@ -25,6 +25,7 @@ import org.apache.flink.connector.kafka.source.KafkaSource;
 import org.apache.flink.connector.kafka.source.enumerator.initializer.OffsetsInitializer;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.streaming.api.functions.sink.PrintSinkFunction;
 
 /**
  * Skeleton for a Flink DataStream Job.
@@ -45,19 +46,23 @@ public class DataStreamJob {
         // to building Flink applications.
         final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
-        String topic = "financial_transactions";
+        String topic = "temp";
 
         KafkaSource<Transaction> source = KafkaSource.<Transaction>builder()
-                .setBootstrapServers("localhost:9092")
+                .setBootstrapServers("kafka:29092")
                 .setTopics(topic)
                 .setGroupId("flink-group")
                 .setStartingOffsets(OffsetsInitializer.earliest())
                 .setValueOnlyDeserializer(new JSONValueDeserializationSchema())
                 .build();
 
-        DataStream<Transaction> transactionStream = env.fromSource(source, WatermarkStrategy.noWatermarks(), "Kafka Source");
+        DataStream<Transaction> transactionStream = env.fromSource(source, WatermarkStrategy.noWatermarks(), "Kafka Source")
+                .setParallelism(1);
 
-        transactionStream.print();
+        transactionStream.map(value -> {
+            System.out.println("Received message: " + value);
+            return value;
+        }).addSink(new PrintSinkFunction<>());
 
         // Execute program, beginning computation.
         env.execute("Flink Java API Skeleton");

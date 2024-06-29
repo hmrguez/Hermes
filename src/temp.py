@@ -22,7 +22,7 @@ def generate_sales_transactions():
         "brand": random.choice(['brand1', 'brand2', 'brand3']),
         "currency": random.choice(['USD', 'EUR', 'GBP']),
         "customer_id": user['username'],
-        "transaction_date": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        # "transaction_date": datetime.utcnow().strftime("%Y-%m-%d%H:%M:%S.%f%z"),
         "payment_method": random.choice(['credit_card', 'paypal', 'cash']),
     }
 
@@ -35,7 +35,7 @@ def delivery_report(err, msg):
 
 
 def main():
-    topic = "financial_transactions"
+    topic = "temp"
     producer = SerializingProducer({
         "bootstrap.servers": "localhost:9092",
     })
@@ -48,6 +48,8 @@ def main():
             producer.produce(topic, key=transaction['transaction_id'], value=json.dumps(transaction),
                              on_delivery=delivery_report)
             producer.poll(0)
+
+            producer.flush()
 
             time.sleep(1)
         except Exception as e:
