@@ -40,10 +40,12 @@ if __name__ == "__main__":
 
     # Produce messages to Kafka topic
     try:
-        while True:
+        i = 0
+        while i < 50:
             transaction = generate_transaction()
             print(f'Sending transaction: {transaction}')
             send_data_to_kafka(producer, topic, transaction)
             time.sleep(1)  # Adjust the sleep time as needed for your use case
+            i += 1
     except KeyboardInterrupt:
         print('Stopped producing messages.')

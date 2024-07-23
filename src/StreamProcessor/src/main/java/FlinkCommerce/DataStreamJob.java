@@ -18,16 +18,12 @@
 
 package FlinkCommerce;
 
-import Deserializer.JSONValueDeserializationSchema;
-import Dto.Transaction;
-import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.serialization.SimpleStringSchema;
-import org.apache.flink.connector.kafka.source.KafkaSource;
-import org.apache.flink.connector.kafka.source.enumerator.initializer.OffsetsInitializer;
 import org.apache.flink.streaming.api.datastream.DataStream;
-import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.apache.flink.streaming.api.functions.sink.PrintSinkFunction;
+import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
+
+import java.util.Properties;
 
 /**
  * Skeleton for a Flink DataStream Job.
@@ -48,21 +44,24 @@ public class DataStreamJob {
         // to building Flink applications.
         final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
+        // Configure Kafka consumer properties
+        Properties properties = new Properties();
+        properties.setProperty("bootstrap.servers", "localhost:9092");
+        properties.setProperty("group.id", "flink-consumer-group");
+
         String topic = "financial_transactions";
 
-        KafkaSource<Transaction> source = KafkaSource.<Transaction>builder()
-                .setBootstrapServers("localhost:9092")
-                .setTopics(topic)
-                .setGroupId("flink-group")
-                .setStartingOffsets(OffsetsInitializer.earliest())
-                .setValueOnlyDeserializer(new JSONValueDeserializationSchema())
-                .build();
+        // Create a Kafka consumer
+        FlinkKafkaConsumer<String> kafkaConsumer = new FlinkKafkaConsumer<>(
+                "financial_transactions", // topic
+                new SimpleStringSchema(),
+                properties);
 
-        DataStreamSource<Transaction> stream = env.fromSource(source, WatermarkStrategy.noWatermarks(), "Kafka Source");
+        DataStream<String> stream = env.addSource(kafkaConsumer);
 
         stream.print();
 
         // Execute program, beginning computation.
-        env.execute("Flink Java API Skeleton");
+        env.execute("Flink Stream Processor");
     }
 }
