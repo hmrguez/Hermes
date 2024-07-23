@@ -2,60 +2,48 @@ import json
 import random
 import time
 
-from faker import Faker
-from confluent_kafka import SerializingProducer
-from datetime import datetime
-
-fake = Faker()
+from confluent_kafka import Producer
 
 
-def generate_sales_transactions():
-    user = fake.simple_profile()
-
-    return {
-        "transaction_id": fake.uuid4(),
-        "product_id": random.choice(['product1', 'product2', 'product3']),
-        "product_name": random.choice(['laptop', 'smartphone', 'tablet']),
-        "product_category": random.choice(['electronics', 'clothing', 'books']),
-        "product_price": round(random.randint(10, 1000), 2),
-        "quantity": random.randint(1, 10),
-        "brand": random.choice(['brand1', 'brand2', 'brand3']),
-        "currency": random.choice(['USD', 'EUR', 'GBP']),
-        "customer_id": user['username'],
-        # "transaction_date": datetime.utcnow().strftime("%Y-%m-%d%H:%M:%S.%f%z"),
-        "payment_method": random.choice(['credit_card', 'paypal', 'cash']),
+# Example financial transaction data
+def generate_transaction():
+    transaction = {
+        "transaction_id": random.randint(1000, 9999),
+        "timestamp": int(time.time()),
+        "amount": round(random.uniform(10.0, 500.0), 2),
+        "currency": random.choice(["USD", "EUR", "GBP"]),
+        "sender": f"user{random.randint(1, 100)}",
+        "receiver": f"user{random.randint(1, 100)}",
+        "location": random.choice(["New York", "London", "Berlin", "Tokyo"])
     }
+    return transaction
 
 
-def delivery_report(err, msg):
-    if err is not None:
-        print(f"Delivery failed for message: {msg.value()}: {err.str()}")
-        return
-    print(f"Message produced: {msg.value()}")
-
-
-def main():
-    topic = "temp"
-    producer = SerializingProducer({
-        "bootstrap.servers": "localhost:9092",
-    })
-
-    curr_time = datetime.now()
-
-    while (datetime.now() - curr_time).seconds <= 120:
-        try:
-            transaction = generate_sales_transactions()
-            producer.produce(topic, key=transaction['transaction_id'], value=json.dumps(transaction),
-                             on_delivery=delivery_report)
-            producer.poll(0)
-
-            producer.flush()
-
-            time.sleep(1)
-        except Exception as e:
-            print(f"An error occurred: {e}")
-            break
+# Function to send data to Kafka
+def send_data_to_kafka(producer: Producer, topic: str, data):
+    producer.produce(topic, value=json.dumps(data))
+    producer.flush()
 
 
 if __name__ == "__main__":
-    main()
+
+    # Kafka topic
+    topic = 'financial_transactions'
+
+    # Kafka configuration
+    kafka_conf = {
+        'bootstrap.servers': 'localhost:9092',  # Adjust this to your Kafka server
+        'client.id': 'financial-transactions-producer'
+    }
+
+    producer = Producer(kafka_conf)
+
+    # Produce messages to Kafka topic
+    try:
+        while True:
+            transaction = generate_transaction()
+            print(f'Sending transaction: {transaction}')
+            send_data_to_kafka(producer, topic, transaction)
+            time.sleep(1)  # Adjust the sleep time as needed for your use case
+    except KeyboardInterrupt:
+        print('Stopped producing messages.')
