@@ -8,7 +8,7 @@ from confluent_kafka import Producer
 # Example financial transaction data
 def generate_transaction():
     transaction = {
-        "transaction_id": random.randint(1000, 9999),
+        "transactionId": random.randint(1000, 9999),
         "timestamp": int(time.time()),
         "amount": round(random.uniform(10.0, 500.0), 2),
         "currency": random.choice(["USD", "EUR", "GBP"]),
