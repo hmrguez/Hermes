@@ -8,4 +8,4 @@ riderModule.iml
 
 # Don't upload pdf files, just .typ ones
 *.pdf
-/src/FlinkCommerce/target/
+/src/FlinkProcessor/target/
