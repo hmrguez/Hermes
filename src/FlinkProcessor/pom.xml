@@ -30,6 +30,7 @@ under the License.
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <flink.version>1.18.0</flink.version>
+        <esper.version>8.9.0</esper.version>
         <target.java.version>1.8</target.java.version>
         <scala.binary.version>2.12</scala.binary.version>
         <maven.compiler.source>${target.java.version}</maven.compiler.source>
@@ -82,6 +83,13 @@ under the License.
             <version>3.0.1-1.18</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-connector-cassandra_2.12</artifactId>
+            <version>3.1.0-1.17</version>
+        </dependency>
+
+
 
         <dependency>
             <groupId>org.postgresql</groupId>
@@ -117,6 +125,13 @@ under the License.
             <version>RELEASE</version>
             <scope>provided</scope>
         </dependency>
+
+        <dependency>
+            <groupId>io.github.cdimascio</groupId>
+            <artifactId>dotenv-java</artifactId>
+            <version>2.2.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>

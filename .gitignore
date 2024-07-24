@@ -9,3 +9,4 @@ riderModule.iml
 # Don't upload pdf files, just .typ ones
 *.pdf
 /src/FlinkProcessor/target/
+/src/FlinkProcessor/.env
