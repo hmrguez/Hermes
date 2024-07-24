@@ -369,9 +369,6 @@ The Persistent Storage submodule is designed for long-term storage of large volu
 
 By addressing these requirements and implementing the proposed solutions, the Storage Layer can efficiently manage data storage, providing fast access, long-term persistence, and support for complex analytics, ensuring the overall system’s performance and reliability.
 
-
-Sure! Here’s a draft for the requirements and solutions for the Batch Layer, focusing on the submodules: ETL, Batch Processing, and Machine Learning.
-
 == Batch Layer
 
 The Batch Layer is responsible for processing large volumes of data at rest, performing transformations, aggregations, and machine learning tasks on historical data. It reads data from the Storage Layer (ideally from the Data Warehouse and Persistent Storage submodules) and writes the processed data back to the Storage Layer. This layer is divided into three subcomponents: ETL, Batch Processing, and Machine Learning.
