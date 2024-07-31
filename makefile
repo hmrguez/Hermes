@@ -16,3 +16,6 @@ watch:
 # Rule to clean up
 clean:
 	@rm -f $(PDF_FILES)
+
+flink:
+	cd src/FlinkProcessor && mvn clean package && flink run target/StreamProcessor-1.0-SNAPSHOT.jar
