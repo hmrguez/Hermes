@@ -13,7 +13,7 @@ import org.apache.flink.configuration.Configuration;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.sink.SinkFunction;
-import org.apache.flink.streaming.api.windowing.assigners.TumblingProcessingTimeWindows;
+import org.apache.flink.streaming.api.windowing.assigners.SlidingProcessingTimeWindows;
 import org.apache.flink.streaming.api.windowing.time.Time;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaProducer;
@@ -77,7 +77,7 @@ public class DataStreamJob {
                 .join(parsedDriverLocations)
                 .where(RideRequest::getPickupLocation)
                 .equalTo(DriverLocation::getCurrentLocation)
-                .window(TumblingProcessingTimeWindows.of(Time.seconds(30)))
+                .window(SlidingProcessingTimeWindows.of(Time.seconds(30), Time.seconds(1)))
                 .apply(new JoinFunction<RideRequest, DriverLocation, EnrichedRideRequest>() {
                     @Override
                     public EnrichedRideRequest join(RideRequest rideRequest, DriverLocation driverLocation) {
