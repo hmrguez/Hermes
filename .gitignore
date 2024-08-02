@@ -10,3 +10,5 @@ riderModule.iml
 *.pdf
 /src/FlinkProcessor/target/
 /src/FlinkProcessor/.env
+src/KafkaMongoConnector/target/
+src/KafkaMongoConnector/project/target/
