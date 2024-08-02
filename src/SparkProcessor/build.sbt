@@ -7,6 +7,11 @@ lazy val root = (project in file("."))
     name := "SparkProcessor"
   )
 
+fork in run := true
+javaOptions ++= Seq(
+  "--add-opens=java.base/sun.nio.ch=ALL-UNNAMED"
+)
+
 libraryDependencies ++= Seq(
   "org.mongodb.spark" %% "mongo-spark-connector" % "10.3.0",
   "org.apache.spark" %% "spark-core" % "3.5.1",
