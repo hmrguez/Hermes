@@ -1,4 +1,4 @@
-import org.apache.spark.sql.functions.{coalesce, col, count, lit, when}
+import org.apache.spark.sql.functions.{col, count, when}
 
 object Main {
 
@@ -19,26 +19,16 @@ object Main {
       .getOrCreate()
 
 
+    // Load DFs
     val rideRequestsDF = spark.read.format("mongodb")
       .option("database", "hermes")
       .option("collection", "ride_requests")
       .load()
+
     val usersDF = spark.read.format("mongodb")
       .option("database", "hermes")
       .option("collection", "users")
       .load()
-
-    // Read ride_requests collection
-//    val rideRequestsDF = spark.read
-//      .format("mongodb")
-//      .option("uri", "mongodb://localhost:27017/hermes.ride_requests")
-//      .load()
-//
-//    // Read users collection
-//    val usersDF = spark.read
-//      .format("mongodb")
-//      .option("uri", "mongodb://localhost:27017/hermes.users")
-//      .load()
 
     // Print schemas to verify column names
     rideRequestsDF.printSchema()
@@ -50,7 +40,7 @@ object Main {
 
     // Join users with ride counts
     val usersWithRideCountsDF = usersDF.join(rideCountsDF, usersDF("user_id") === rideCountsDF("riderId"), "left_outer")
-//      .withColumn("ride_count", coalesce(col("ride_count"), lit(0)))
+    //      .withColumn("ride_count", coalesce(col("ride_count"), lit(0)))
 
 
     // Classify users based on the number of ride requests
