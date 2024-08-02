@@ -11,23 +11,38 @@ object Main {
     import org.apache.spark.sql.SparkSession
 
     val spark = SparkSession.builder()
-      .master("local")
+      .master("local[*]")
       .appName("MongoSparkConnectorIntro")
-      .config("spark.mongodb.read.connection.uri", "mongodb://127.0.0.1/hermes.ride_requests")
-      .config("spark.mongodb.write.connection.uri", "mongodb://127.0.0.1/hermes.cleaned_users")
+      .config("spark.mongodb.read.connection.uri", "mongodb://localhost:27017/hermes.ride_requests")
+      .config("spark.mongodb.read.connection.uri", "mongodb://localhost:27017/hermes.users")
+      .config("spark.mongodb.write.connection.uri", "mongodb://localhost:27017/hermes.cleaned_users")
       .getOrCreate()
 
-    // Read ride_requests collection
-    val rideRequestsDF = spark.read
-      .format("mongo")
-      .option("uri", "mongodb://127.0.0.1/hermes.ride_requests")
+
+    val rideRequestsDF = spark.read.format("mongodb")
+      .option("database", "hermes")
+      .option("collection", "ride_requests")
+      .load()
+    val usersDF = spark.read.format("mongodb")
+      .option("database", "hermes")
+      .option("collection", "users")
       .load()
 
-    // Read users collection
-    val usersDF = spark.read
-      .format("mongo")
-      .option("uri", "mongodb://127.0.0.1/hermes.users")
-      .load()
+    // Read ride_requests collection
+//    val rideRequestsDF = spark.read
+//      .format("mongodb")
+//      .option("uri", "mongodb://localhost:27017/hermes.ride_requests")
+//      .load()
+//
+//    // Read users collection
+//    val usersDF = spark.read
+//      .format("mongodb")
+//      .option("uri", "mongodb://localhost:27017/hermes.users")
+//      .load()
+
+    // Print schemas to verify column names
+    rideRequestsDF.printSchema()
+    usersDF.printSchema()
 
     // Count the number of ride requests per user
     val rideCountsDF = rideRequestsDF.groupBy("riderId")
@@ -35,7 +50,7 @@ object Main {
 
     // Join users with ride counts
     val usersWithRideCountsDF = usersDF.join(rideCountsDF, usersDF("user_id") === rideCountsDF("riderId"), "left_outer")
-      .withColumn("ride_count", coalesce(col("ride_count"), lit(0)))
+//      .withColumn("ride_count", coalesce(col("ride_count"), lit(0)))
 
 
     // Classify users based on the number of ride requests
@@ -45,8 +60,8 @@ object Main {
 
     // Write the transformed user data to the cleaned_users collection
     classifiedUsersDF.write
-      .format("mongo")
-      .option("uri", "mongodb://127.0.0.1/hermes.cleaned_users")
+      .format("mongodb")
+      .option("uri", "mongodb://localhost:27017/hermes.cleaned_users")
       .mode("overwrite")
       .save()
 
