@@ -11,8 +11,8 @@ This is a data engineering project focused on a Modular Architecture for a data 
 1. **Research and Architecture Documentation**: All the research and architecture design documents are located in the `docs` folder. These documents are written in Typst, and you need to have [typst](https://typst.app/) installed on your system to compile them. Use `make` for compiling all the files, `make clean` for deleting the .pdf files, and `make watch <filepath>` to watch a specific file.
 
 2. **Implementation**: The implementation of the architecture is located in the `src` directory. This implementation is a use case of the architecture, utilizing the following technologies:
-    - **Java**
-    - **Scala**
+    - **Java** for the core application
+    - **Scala** for Kafka and MongoDB connector and future Spark jobs
     - **Flink** for stream processing
     - **Kafka** for event streaming
     - **MongoDB** for data storage
