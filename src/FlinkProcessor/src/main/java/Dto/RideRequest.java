@@ -6,6 +6,7 @@ import lombok.Setter;
 @Setter
 @Getter
 public class RideRequest {
+    private String riderId;
     private String pickupLocation;
     private String requestId;
 

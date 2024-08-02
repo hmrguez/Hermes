@@ -12,3 +12,5 @@ riderModule.iml
 /src/FlinkProcessor/.env
 src/KafkaMongoConnector/target/
 src/KafkaMongoConnector/project/target/
+src/SparkProcessor/target
+src/SparkProcessor/project/target/
