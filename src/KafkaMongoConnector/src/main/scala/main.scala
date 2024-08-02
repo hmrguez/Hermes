@@ -1,4 +1,5 @@
-@main
-def main(): Unit = {
-  println("Hello world!")
+object main {
+  def main(args: Array[String]): Unit = {
+    println("Hello, world!")
+  }
 }
