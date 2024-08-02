@@ -1,8 +1,16 @@
-ThisBuild / version := "0.1.0-SNAPSHOT"
+// build.sbt
+name := "KafkaMongoConnector"
 
-ThisBuild / scalaVersion := "3.3.3"
+version := "0.1"
 
-lazy val root = (project in file("."))
-  .settings(
-    name := "KafkaMongoConnector"
-  )
+scalaVersion := "2.13.14"
+
+libraryDependencies ++= Seq(
+  "org.apache.kafka" %% "kafka" % "3.8.0",
+  "org.mongodb.scala" %% "mongo-scala-driver" % "5.1.1"
+)
+
+resolvers ++= Seq(
+  "Confluent" at "https://packages.confluent.io/maven/",
+  "Maven Central" at "https://repo1.maven.org/maven2/"
+)
